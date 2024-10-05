@@ -1,0 +1,3 @@
+ALTER TABLE driver
+    MODIFY COLUMN rating DOUBLE NULL,
+    MODIFY COLUMN is_available BIT(1) NULL;

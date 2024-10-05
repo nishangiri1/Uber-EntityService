@@ -1,0 +1,6 @@
+ALTER TABLE passenger
+    ADD driver_id BIGINT NULL;
+
+ALTER TABLE passenger
+    ADD CONSTRAINT FK_PASSENGER_ON_DRIVER FOREIGN KEY (driver_id) REFERENCES driver (id);
+
