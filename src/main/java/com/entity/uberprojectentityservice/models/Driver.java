@@ -5,30 +5,24 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
 @Entity
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler" , "bookings"})
-public class Driver extends BaseModel{
-
-    private String name;
+public class Driver extends User{
 
     @Column(nullable = false, unique = true)
     private String licenseNumber;
 
-    @Column(nullable = false)
-    private String phoneNumber;
-
-    @Column(nullable = false)
-    private String password;
 
     @Column(nullable = false,unique = true)
     private String NID;
@@ -40,11 +34,6 @@ public class Driver extends BaseModel{
     @Enumerated(value = EnumType.STRING)
     private DriverApprovalStatus driverApprovalStatus;
 
-    @OneToOne
-    private ExactLocation lastKnownLocation;
-
-    @OneToOne
-    private ExactLocation home;
 
     private String activeCity;
 
@@ -59,6 +48,4 @@ public class Driver extends BaseModel{
     @Fetch(FetchMode.SUBSELECT)
     private List<Booking> bookings;
 
-//   @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST},optional = false)
-//    private Passenger passenger;
 }

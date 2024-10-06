@@ -5,29 +5,19 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Builder
+@SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler" , "bookings"})
-public class Passenger extends BaseModel {
-    @Column(nullable = false)
-    private String fullName;
-
-    @Column(nullable = false)
-    private String phoneNumber;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
+public class Passenger extends User{
 
     @OneToMany(mappedBy = "passenger")
     private List<Booking> bookings = new ArrayList<>();
@@ -39,13 +29,4 @@ public class Passenger extends BaseModel {
     @DecimalMax(value = "5.00", message = "Rating must be less than or equal to 5.00")
     private Double rating;
 
-    @OneToOne
-    private ExactLocation lastKnownLocation;
-
-    @OneToOne
-    private ExactLocation home;
-
-
-    @OneToOne
-    private Driver driver;
 }
