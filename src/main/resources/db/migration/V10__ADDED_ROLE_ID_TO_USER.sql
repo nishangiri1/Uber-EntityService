@@ -1,0 +1,5 @@
+ALTER TABLE user
+    ADD role_id BIGINT NULL;
+
+ALTER TABLE user
+    ADD CONSTRAINT FK_USER_ON_ROLE FOREIGN KEY (role_id) REFERENCES role (id);
