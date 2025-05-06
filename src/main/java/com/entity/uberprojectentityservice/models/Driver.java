@@ -33,6 +33,8 @@ public class Driver extends User{
 
     @Enumerated(value = EnumType.STRING)
     private DriverApprovalStatus driverApprovalStatus;
+    
+    
 
 
     private String activeCity;
